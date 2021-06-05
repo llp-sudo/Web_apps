@@ -1,0 +1,11 @@
+body {
+    background-color: #778899;
+    background-image: url('img/dollar2.png');
+    color: white;
+}
+
+.logo_login {
+    width: 450px;
+    height: 250px;
+    margin-left: -30px;
+}
