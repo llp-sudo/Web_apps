@@ -9,7 +9,7 @@
     $id = $_SESSION["id"];
     $name = $_SESSION["name"];
     #Conexão com o DB
-    $MySQLdb = new PDO("mysql:host=127.0.0.1;dbname=banco", "root", " ");
+    $MySQLdb = new PDO("mysql:host=127.0.0.1;dbname=banco", "root", "  ");
     $MySQLdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $cursor = $MySQLdb->prepare("SELECT * FROM conta WHERE id_user =:id");
@@ -54,7 +54,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Informações</a>
+                <a class="nav-link" href="./info.php">Informações</a>
             </li>
 
             <li class="nav-item">

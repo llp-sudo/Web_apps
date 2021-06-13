@@ -3,7 +3,7 @@
     session_start();
     header('Content-Type: application/json');
     #Conexão com o DB
-    $MySQLdb = new PDO("mysql:host=127.0.0.1;dbname=banco", "root", " ");
+    $MySQLdb = new PDO("mysql:host=127.0.0.1;dbname=banco", "root", "  ");
     $MySQLdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     #Dados recebidos da pagina de login

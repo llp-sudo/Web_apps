@@ -12,13 +12,13 @@ $name = $_SESSION["name"];
 $MySQLdb = new PDO("mysql:host=127.0.0.1;dbname=banco", "root", "  ");
 $MySQLdb->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$cursor = $MySQLdb->prepare("SELECT * FROM conta WHERE id_user =:id");
+$cursor = $MySQLdb->prepare("SELECT * FROM users WHERE id =:id");
 $cursor->execute(array(":id" => $id));
 
 $row = $cursor->fetch();
-$conta = intval($row['conta']);
-$saldo = intval($row['saldo']);
-$agencia = intval($row['agencia']);
+$nome = $row['first_name'];
+$sobrenome = $row['last_name'];
+$email = $row['email'];
 
 ?>
 
@@ -54,7 +54,7 @@ $agencia = intval($row['agencia']);
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="./info.php">Informações</a>
+                <a class="nav-link" href="#">Informações</a>
             </li>
 
             <li class="nav-item">
@@ -66,42 +66,45 @@ $agencia = intval($row['agencia']);
 
 <div class="row py-3 px-2 " style="width: 100%;">
     <div class="col-md-3 hi_user">
-        <h2> Seu saldo: R$<?= $saldo ?> </h2>
+        <h2> Olá,  <?= $nome ?> </h2>
     </div>
 </div>
 
 
 <div class="container">
-    <div class="row pt-5">
-        <div class="input-group mb-3">
-            <input type="text" id="agencia"class="form-control " placeholder="insira a agencia de destino">
+    <div class="row">
+        <div class="mb-3 col-4 offset-md-4">
+            <label for="nome_registro" class="form-label">Nome:</label>
+            <input type="text" class="form-control input-sm" value="<?= $nome?>"" id="nome_update" aria-describedby="nome">
         </div>
     </div>
 
     <div class="row">
-        <div class="input-group mb-3">
-            <input type="text" id="conta_dest"class="form-control " placeholder="insira a conta de destino">
+        <div class="mb-3 col-4 offset-md-4">
+            <label for="sobrenome_registro" class="form-label">Sobrenome:</label>
+            <input type="text" class="form-control input-sm" value="<?= $sobrenome?>"id="sobrenome_update" aria-describedby="sobrenome">
         </div>
     </div>
 
     <div class="row">
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text">$</span>
-            </div>
-            <input type="text" id="valor" class="form-control" placeholder="insira o valor que deseja transferir">
-            <div class="input-group-append">
-                <span class="input-group-text">.00</span>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3 offset-md-9">
-            <button type="button" id="cancelar_transfer"class="btn btn-warning btn-lg">Cancelar</button>
-            <button type="button" id="transfer"class="btn btn-info btn-lg">Transferir</button>
+        <div class="mb-3 col-4 offset-md-4">
+            <label for="email_registro" class="form-label">E-mail:</label>
+            <input type="email" class="form-control input-sm" id="email_update" value="<?= $email?>"aria-describedby="emailregistre">
         </div>
     </div>
 
+
+    <div class="row">
+        <div class="mb-3 col-4 offset-md-4">
+            <label for="senha_registro" class="form-label">Senha:</label>
+            <input type="password" class="form-control" id="senha_update">
+        </div>
+    </div>
+
+    <div class="mb-5 col-5 offset-md-7">
+        <button type="button" id="send_update" class="btn btn-success">Atualizar</button>
+    </div>
+</div>
 
 </div>
 
@@ -111,7 +114,7 @@ $agencia = intval($row['agencia']);
 <body>
 
     <!-- Optional JavaScript; choose one of the two! -->
-    <script src="../assets/transferir.js"></script>
+    <script src="../assets/info.js"></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 
