@@ -1,0 +1,18 @@
+body {
+    background-image: url("img/wallpaper.jpg");
+}
+
+.escolha :hover {
+    border-style: solid;
+    border-color: green;
+    cursor: pointer
+}
+
+#resultado{
+    color: white;
+    font-size: 35px;
+}
+#placar{
+    color: white;
+    font-size: 35px;
+}
