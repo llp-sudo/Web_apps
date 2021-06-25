@@ -1,0 +1,65 @@
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.principal{
+    background-image: url("../assets/img/entrar.png");
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login{
+    left: 17%;
+    top: 45%;
+    margin-right: 20px;
+    position: absolute;
+}
+
+.btn_login {
+    font-size: 2.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.input_login {
+    width: 20%;
+    display: inline;
+}
+
+.back-btn {
+    font-size: 1.3rem;
+    position: absolute;
+    color: #5b4c9c;
+    left: 1%;
+    top: 90%;
+    cursor: pointer;
+}
+
+#cadastro, #entrar, #logar {
+    border-radius: 40px 10px;
+}
+
+#cadastro {
+    color: white;
+    background-color: #90cd82;
+    border-color: white;
+}
+
+#entrar, #logar {
+    color: white;
+    background-color: #5b4c9b;
+    border-color: white;
+}
+
+.input-cadastro {
+    width: 35%;
+    margin: 1rem;
+}
+
+.direita {
+    position: absolute;
+    left: 28%;
+}
