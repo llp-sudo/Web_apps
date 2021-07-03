@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_erros', 1);
-error_reporting(E_ALL);
 
 require_once('../db/conexao.php');
 
@@ -21,7 +18,7 @@ class Users
 
         if ($cursor->rowCount()) {
             $row = $cursor->fetch();
-            return array("username"=>$row['username'],"senha"=> $row['senha']);
+            return array("username"=>$row['username']);
 
         } else {
             return 0;
@@ -41,8 +38,4 @@ class Users
 
     }
 }
-
-$user = new Users();
-$result = $user->login("amanda", "amanda123");
-print_r($result);
 

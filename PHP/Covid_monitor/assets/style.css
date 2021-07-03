@@ -1,6 +1,7 @@
 body, html {
     height: 100%;
     margin: 0;
+    background-color: #93d580;
 }
 
 .principal{
@@ -12,7 +13,7 @@ body, html {
 }
 
 .login{
-    left: 17%;
+    padding-left: 17%;
     top: 45%;
     margin-right: 20px;
     position: absolute;
@@ -61,5 +62,15 @@ body, html {
 
 .direita {
     position: absolute;
-    left: 28%;
+    left: 45%;
+}
+
+h1 {
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+    background-color: white;
+    width: 20%;
+    border-radius: 15px 50px 30px;
 }
