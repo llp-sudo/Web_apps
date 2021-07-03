@@ -20,13 +20,13 @@ if($option == "get_countries") {
         $ano = substr($ano,2);
         $date = '\''. $mes. '/%/'. $ano. '\'';
         $query = 'country = \''. $country .'\' and date_case like '. $date;
-        $result = array('query'=> $query);
+        $result = $monitor->return_data($query);
         echo json_encode($result);
     } elseif ($mes == 'Mês') {
         $ano = substr($ano,2);
         $date = '\'%/%/'. $ano. '\'';
         $query = 'country = \''. $country .'\' and date_case like '. $date;
-        $result = array('query'=> $query);
+        $result = $monitor->return_data($query);
         echo json_encode($result);
     } else {
         $result = array('msg'=> 'Problema interno');

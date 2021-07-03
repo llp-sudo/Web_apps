@@ -40,11 +40,6 @@ if (!isset($_SESSION["name"])) {
                         <select id="country_select" class="form-select">
                             <option selected>País</option>
                         </select>
-                        <select id="periodo_select" class="form-select" style="display:none;">
-                            <option selected>Periodo</option>
-                            <option value="mes">Mês</option>
-                            <option value="ano">Ano</option>
-                        </select>
                         <select id="mes_select" class="form-select" style="display:none;">
                             <option selected>Mês</option>
                         </select>

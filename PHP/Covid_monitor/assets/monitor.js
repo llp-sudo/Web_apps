@@ -4,29 +4,28 @@ $(document).ready(function () {
 
         //variaveis
         ctx: $(`#myChart`)[0].getContext('2d'),
-
+        myChart: Object(),
 
 
         //Inicializar as funções:
         init() {
             this._get_countries();
-            this.create_graph();
             this.create_mouth_select();
             this.init_select();
             this.gerar();
         },
 
         //Cria o grafico canvas
-        create_graph: function () {
-            outher = this;
+        create_graph: function (label, data) {
+            outher_this = this;
 
-            myChart: new Chart(outher.ctx, {
+            outher_this.myChart = new Chart(outher_this.ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    labels: label,
                     datasets: [{
-                        label: '# of Votes',
-                        data: [12, 19, 3, 5, 2, 3],
+                        label: 'Quantidade de casos',
+                        data: data,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.2)',
                             'rgba(54, 162, 235, 0.2)',
@@ -84,24 +83,8 @@ $(document).ready(function () {
                 opc = $(this).val()
                 console.log(opc);
                 if (opc != 'País') {
-                    $(`#periodo_select`).show();
-                } else {
-                    $(`#periodo_select`).hide();
-                    $(`#mes_select`).hide();
-                    $(`#gerar`).hide();
-                }
-            });
-
-            $(`#periodo_select`).change(function () {
-                opc = $(this).val()
-                console.log(opc);
-                if (opc == 'mes') {
                     $(`#mes_select`).show();
                     $(`#ano_select`).show();
-                    $(`#gerar`).show();
-                } else if (opc == 'ano') {
-                    $(`#ano_select`).show();
-                    $(`#mes_select`).hide();
                     $(`#gerar`).show();
                 } else {
                     $(`#mes_select`).hide();
@@ -109,27 +92,38 @@ $(document).ready(function () {
                     $(`#gerar`).hide();
                 }
             });
-            //Limpa os campos de mes e ano ao alterar o periodo
-            $(`#periodo_select`).change(function () {
-                $(`#mes_select`).val(`Mês`)
-                $(`#ano_select`).val(`Ano`)
-
-            });
         },
 
         gerar: function () {
-
+            outher_this = this;
             $(`#gerar`).click(function () {
+                //destroi o canvas
+                console.log(Object.keys(outher_this.myChart).length === 0 );
+
+                if(Object.keys(outher_this.myChart).length !== 0 ) {
+                    console.log(`destruindo canvas`);
+                    outher_this.myChart.destroy();
+                }
+                
                 //verificar se os valores != de null
                 let option = `graph_plot`;
+                let labels = [];
+                let data = [];
                 country = $(`#country_select`).val()
                 mes = $(`#mes_select`).val()
                 ano = $(`#ano_select`).val()
 
-                if (country != 'País' && ano != 'Ano'|| mes != 'Mês') {
+                if (country != 'País' && ano != 'Ano' && mes != 'Mês') {
                     //Solicitar os dados
                     $.post("../controllers/monitor.php", { 'option': option, 'country': country, 'mes': mes, 'ano': ano, }, function (result) {
-                        console.log(result);
+                        result.forEach(function (item, index){
+                            labels.push(item[0]);
+                            data.push(item[1]);
+                        });
+                        console.log(labels);
+                        console.log(data);
+                        outher_this.create_graph(labels, data);
+
                     });
                 } else {
                     alert(`Preencha todos os campos`)
